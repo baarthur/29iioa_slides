@@ -1,0 +1,576 @@
+---
+title: "Heritage Tourism and Economic Development:"
+subtitle: "An Input-Output Analysis for Minas Gerais, Brazil"
+author: "Arthur Alvarenga, Cláudio Seibert, Elvira Medeiros, Filipe Reis, and Fernando Perobelli"
+date: 2023-07-30
+
+format: 
+  revealjs:
+    theme: solarized
+    #view-distance: 5
+
+execute: 
+  dev: png
+  fig-format: retina
+  fig-dpi: 700
+  cache: true
+
+editor: 
+  markdown: 
+    wrap: 72
+    
+logo: ../data/img/ufjf_lates.png
+---
+
+## Motivation
+
+```{r}
+#| label: setup
+
+library(here)
+library(kableExtra)
+```
+
+* What role does tourism plays in a developing economy?
+* Minas Gerais, Brazil:
+  + Highly dependent on the mining industry
+  + Rich cultural and architectonic heritage
+* How related it is to the rest of the economy?
+* What about regional disparities?
+
+::: {style="text-align: center; color: #d33682"}
+We have a lot of questions, but not so many answers.
+:::
+
+
+
+## Minas Gerais: an Overview
+
+:::: {.columns style="font-size: 0.7em"}
+
+::: {.column width="35%"}
+* Population: 21.4 million
+  + #2 in Brazil
+* HDI: 0.774 (2010)
+  + #4 in Brazil
+* GDP: US$ 177 billion
+  + 9.3% of national output
+:::
+
+::: {.column width="65%"}
+![](../data/img/mapa_gdp.png)
+:::
+
+::: {style="text-align: center; color: #d33682; font-size: 1.25em"}
+Minas Gerais is a snapshot of Brazil: It reproduces national patterns of income and quality of life disparities
+:::
+
+::::
+
+
+
+## Minas Gerais: an Overview
+
+::: {style="font-size: 0.7em"}
+![](../data/img/va_mg.png){width="800"}
+
+* Trade (B08), Real Estate (B14), Manufacturing (B04), and Agriculture (B01) account for 46% of the Value Added 
+* Services (B05-B07, B09-B20): 56% of VA
+:::
+
+
+
+## Minas Gerais: an Overview
+
+#### Summary Statistics
+
+::: {style="font-size: 0.5em"}
+|Code|Region          |Population|% MG  |GVA (R\$M)|% MG  |HDI-M|
+|:--:|:----           |:----:    |:----:|:----:    |:----:|:---:|    
+|R01 |Belo Horizonte  |2,530,701 |11.82%|71,892    |12.69%|0.810|
+|R02 |Barão de Cocais |33,232    |0.16% |723       |0.13% |0.722|
+|R03 |Caeté           |45,364    |0.21% |575       |0.10% |0.728|
+|R04 |Catas Altas     |5,465     |0.03% |501       |0.09% |0.684|
+|R05 |Congonhas       |55,863    |0.26% |2,281     |0.40% |0.753|
+|R06 |Diamantina      |47,924    |0.22% |686       |0.12% |0.716|
+|R07 |Mariana         |61,830    |0.29% |3,832     |0.68% |0.742|
+|R08 |Ouro Preto      |74,824    |0.35% |5,978     |1.05% |0.741|
+|R09 |Sabará          |137,877   |0.64% |2,947     |0.52% |0.731|
+|R10 |Santa Bárbara   |31,873    |0.15% |1,159     |0.20% |0.707|
+|R11 |São João del Rei|90,897    |0.42% |1,951     |0.34% |0.758|
+|R12 |Serro           |20,915    |0.10% |192       |0.03% |0.656|
+|R13 |Tiradentes      |8,160     |0.04% |118       |0.02% |0.740|
+|R14 |Rest of MG      |18,267,025|85.31%|473,863   |83.62%|0.667|
+:::
+
+
+
+## The Baroque Heritage
+
+:::: {.columns style="font-size: 0.7em"}
+
+::: {.column width="35%"}
+* Gold run, 17th and 18th centuries 
+* Portuguese-inspired with local features
+* Sacred art, buildings, landmarks
+* Three Unesco World Cultural Heritage sites
+  + Diamantina
+  + Ouro Preto
+  + Congonhas Sanctuary
+:::
+
+::: {.column width="65%"}
+![](../data/img/mapa_mg.png)
+:::
+
+::::
+
+
+
+## The Baroque Heritage
+
+::: {.r-stack}
+
+::: {.fragment}
+![](../data/img/op_1.avif){height="600"}
+:::
+
+::: {.fragment}
+![](../data/img/op_carna.webp){height="600"}
+:::
+
+::: {.fragment}
+![](../data/img/op_4.jpg){height="600"}
+:::
+
+::: {.fragment}
+![](../data/img/cg_3.jpg){height="600"}
+:::
+
+::: {.fragment}
+![](../data/img/cg_1.webp){height="600"}
+:::
+
+::: {.fragment}
+![](../data/img/mr_1.webp){height="600"}
+:::
+
+::: {.fragment}
+![](../data/img/td_1.webp){height="600"}
+:::
+
+::: {.fragment}
+![](../data/img/td_2.jpg){height="600"}
+:::
+
+:::
+
+
+
+## Methodology
+
+::: {style="font-size: 0.7em"}
+
+### First challenge: lack of regional data
+
+* Framework: Interregional Input-Output Setting (IIOAS)
+  + @haddad2017a
+  + Homogenous production and utility functions across regions
+  + Consistent with national aggregates
+  + 15 regions, 20 sectors
+* Trade matrices between regions
+  + Supply: $TOTSUP := DOMSUP + EXP$
+  + Exports data ($EXP$) known for each region and sector
+  + Domestic supply ($DOMSUP$): labor microdata as proxy
+
+:::
+
+
+
+## Methodology
+
+:::: {.columns style="font-size: 0.7em"}
+
+::: {.column width="50%"}
+#### Linkages
+* Within regions ($intra$)
+* Key sector: $FL > 1$ and $BL > 1$
+* E.g.: Backward linakges for region 1 
+  + $FL$s are likewise, but on rows instead of columns
+
+$$
+\begin{aligned}
+BL_A^{intra, 1} =  \frac{2^{-1} (l_{AA}^{11} + l_{BA}^{11})}{2^{-2} \sum_{j=1}^{15} \sum_{k=1}^{15} l_{jk}^{11}}
+\end{aligned}
+$$
+
+:::
+  
+::: {.column width="50%"}
+#### Hypothetical Extraction
+* Total extraction (backward and forward)
+* Intermediate consumption and final demand
+  + Simulates sudden vanishing of the extracted industry
+  + Otherwise: assumes agents would substitute with imports
+  
+:::
+::::
+
+
+
+## Methodology
+
+::: {style="font-size: 0.7em"}
+
+### Second challenge: tourism is a cross-sector industry
+
+* Common approach: tourism satellite account (TSA)
+  + Not available for the state
+
+* Our approach:
+  + Estimate tourism shares in each sector and region
+  + Tourism Characteristic Activities (TCA)s, classified by the state government
+  + Sensitivity analysis + state survey
+  + Apply shares as extraction coefficient
+
+Example: if 10% of a sector's output in a city is tourism-related, then 10% of the sector is extracted.
+:::
+
+
+
+
+## Methodology
+
+#### Sensitivity analysis
+
+:::: {.columns}
+::: {.column width="65%"}
+::: {style="font-size: 0.5em"}
+|    | Region         |B09 |B10 |B11 |B14  |B15  |B19 |
+|:--:|:--------:      |:--:|:--:|:--:|:--: |:--: |:--:|
+|R01 |Belo Horizonte  | -  | -  | -  | -   | -   | -  |
+|R02 |Barão de Cocais |25% |98% |25% |1.25%|0.25%|25% |
+|R03 |Caeté           |25% |100%|25% |1.25%|0.25%|50% |
+|R04 |Catas Altas     |25% |98% |25% |1.25%|0.25%|50% |
+|R05 |Congonhas       |25% |96% |25% |1.25%|0.25%|50% |
+|R06 |Diamantina      |50% |92% |75% |5.00%|1.00%|100%|
+|R07 |Mariana         |50% |96% |50% |5.00%|1.00%|100%|
+|R08 |Ouro Preto      |50% |100%|75% |5.00%|1.00%|100%|
+|R09 |Sabará          |13% |98% |25% |1.25%|0.25%|25% |
+|R10 |Santa Bárbara   |25% |98% |50% |2.50%|0.50%|50% |
+|R11 |São João del Rei|25% |100%|25% |5.00%|1.00%|100%|
+|R12 |Serro           |50% |98% |50% |5.00%|1.00%|100%|
+|R13 |Tiradentes      |75% |100%|100%|5.00%|1.00%|100%|
+|R14 |Rest of MG      | -  | -  | -  | -   | -   | -  |
+|R15 |Rest of Brazil  | -  | -  | -  | -   | -   | -  |
+:::
+:::
+
+::: {.column width="35%"}
+::: {style="font-size: 0.7em"}
+* *Accommodation* (B10): data from state survey
+* *Transportation* (B09), *Food Services* (B11), and *Arts, Culture, Sports, and Recreation* (B19): relative to city size and its importance as touristic destination
+* *Real Estate* (B14) and *Administrative Services* (B15): minor role, smaller coefficients
+:::
+:::
+
+::::
+
+
+
+## Data
+
+::: {style="font-size: 0.7em"}
+* Brazilian 2018 I-O Matrix [@guilhoto2021]
+* Exports: International Trade Statistics [@brazil2022]
+* Labor: Goverment database on firms and workers by economic activity [@brazil2022a]
+
+:::
+
+
+
+## Results
+
+#### Linkages
+
+::: {style="font-size: 0.7em"}
+* Except for Transportation, no TCA is a key sector
+* Most key sectors are services
+  + Especially *Construction*, *Wholesale and Retail Trade*, *Transportation*, and *Finance*
+* *Extractive Industries*
+  + Biggest part of Value Added in most cities
+  + Key sector only in Sabará
+  + Mostly export commodities, with little local processing
+
+:::
+
+
+## Results
+
+::: {style="font-size: 0.5em"}
+```{r}
+#| label: tbl-linkresfull
+#| tbl-cap: Linkages
+
+options(knitr.kable.NA = " ")
+
+df_extract <- read_excel(here("data/descriptive.xlsx"), sheet = "R_link") 
+
+df_extract %>% 
+  select(-c(B01, B10:B11, B16:B20)) %>% 
+  kbl(
+    align = "c",
+  )
+```
+:::
+
+
+
+## Results
+
+#### Hypothetical Extraction
+
+:::: {.columns style="font-size: 0.7em"}
+::: {.column width="40%"}
+**Simultaneous extraction**
+
+* Negligible impacts outside the Baroque Circuit
+* Lowest: Catas Altas, $< 1\%$
+* Highest: Tiradentes, $65\%$
+* Average: $10\%$ 
+* Median: $6\%$
+
+:::
+
+::: {.column width="60%"}
+**Local extractions**
+
+* Smaller than in the simultaneous scenario
+  + Modest regional dependency
+  + Biggest difference in Tiradentes ($33\%$), average $17\%$
+* Almost no intraregional impacts
+  + Notable exceptions: Ouro Preto & Mariana and Tiradentes & São João del Rei
+  
+:::
+::::
+
+
+
+## Hypothetical Extraction
+
+::: {style="font-size: 0.45em"}
+```{r}
+df_extract <- read_excel(here("data/descriptive.xlsx"), sheet = "R_ext") %>% 
+  mutate(
+    across(dx_tot:dx_13, ~ . * 100)
+  ) 
+
+df_extract <- df_extract %>% 
+  mutate(
+    dif = as.numeric(
+      str_extract(dif, "-(\\d+)*(\\d+)")
+    ) %>% replace_na(0)
+  )
+
+df_extract %>% 
+  select(-cod_regiao) %>% 
+  kbl(
+    col.names = c("Region", "Global", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12", "R13", "Diff."),
+    align = "lcccccccccccccc",
+    #align = "lrrrrrrrrrrrrrr",
+    digits = 2,
+  ) %>% 
+  column_spec(
+    2, color = "white",
+    background = spec_color(df_extract$dx_tot, direction = -1, begin = 0.6, end = 0.9) 
+    ) %>% 
+  column_spec(
+    3, color = "white",
+    background = spec_color(df_extract$dx_02, direction = -1, begin = 0.6, end = 0.9)
+    ) %>% 
+  column_spec(
+    4, color = "white",
+    background = spec_color(df_extract$dx_03, direction = -1, begin = 0.6, end = 0.9)
+  ) %>% 
+  column_spec(
+    5, color = "white",
+    background = spec_color(df_extract$dx_04, direction = -1, begin = 0.6, end = 0.9)
+  ) %>% 
+  column_spec(
+    6, color = "white",
+    background = spec_color(df_extract$dx_05, direction = -1, begin = 0.6, end = 0.9)
+  ) %>% 
+  column_spec(
+    7, color = "white",
+    background = spec_color(df_extract$dx_06, direction = -1, begin = 0.6, end = 0.9)
+  ) %>% 
+  column_spec(
+    8, color = "white",
+    background = spec_color(df_extract$dx_07, direction = -1, begin = 0.6, end = 0.9)
+  ) %>% 
+  column_spec(
+    9, color = "white",
+    background = spec_color(df_extract$dx_08, direction = -1, begin = 0.6, end = 0.9)
+  ) %>% 
+  column_spec(
+    10, color = "white",
+    background = spec_color(df_extract$dx_09, direction = -1, begin = 0.6, end = 0.9)
+  ) %>% 
+  column_spec(
+    11, color = "white",
+    background = spec_color(df_extract$dx_10, direction = -1, begin = 0.6, end = 0.9)
+  ) %>% 
+  column_spec(
+    12, color = "white",
+    background = spec_color(df_extract$dx_11, direction = -1, begin = 0.6, end = 0.9)
+  ) %>% 
+  column_spec(
+    13, color = "white",
+    background = spec_color(df_extract$dx_12, direction = -1, begin = 0.6, end = 0.9)
+  ) %>% 
+  column_spec(
+    14, color = "white",
+    background = spec_color(df_extract$dx_13, direction = -1, begin = 0.6, end = 0.9)
+  ) %>% 
+  column_spec(
+    15, color = "white",
+    background = spec_color(df_extract$dif, direction = -1, begin = 0.6, end = 0.9)
+  )
+```
+*Note: values as percentage of Gross Value of Production (GVP)*
+:::
+
+
+
+## Why Are Results so Different?
+
+::: {style="font-size: 0.7em"}
+**Sabará, Ouro Preto, and Tiradentes: a case study**
+:::
+
+::: {style="font-size: 0.45em"}
+```{r}
+readRDS(here("data/df_muni.RDS")) %>% 
+  filter(code_muni %in% c("3156700", "3146107", "3168804")) %>% 
+  select(name_muni, pop, va_tot) %>% 
+  mutate(va_tot = va_tot/1000) %>% 
+  cbind(
+    ext = c(46.56, 33.45, 1.84),
+    com = c(06.23, 12.28, 17.11),
+    tca = c(8.50, 19.26, 46.85),
+    svc = c(34.47, 24.87, 22.03),
+    oth = c(04.23, 10.14, 12.17)
+  ) %>% 
+  arrange(desc(pop)) %>% 
+  kbl(
+    col.names = c(
+      "Region", "Population", "Value Added (R$ M)", "Extractive Industries (%)", 
+      "Trade (%)", "TCAs (%)", "Other Services (%)", "Others (%)"
+    ),
+    align = "lccccccc",
+    digits = 2
+  ) %>% 
+  column_spec(1, width = "6em") %>%
+  column_spec(2, width = "5em") %>%
+  column_spec(3, width = "6em") %>%
+  column_spec(4, width = "7em") %>%
+  column_spec(5, width = "5em") %>%
+  column_spec(6, width = "5em") %>%
+  column_spec(7, width = "6em") %>%
+  column_spec(8, width = "5em") %>%
+  kable_styling(full_width = F)
+```
+:::
+
+::: {style="font-size: 0.7em"}
+
+* Sabará
+  + Mining industry and part of the capital's metropolitan area 
+  + Not a well-known touristic destination
+* Ouro Preto
+  + Mining industry, large university, regional center
+  + UNESCO World Heritage Site, famous touristic destination
+* Tiradentes
+  + Small town 
+  + Highly dependent on tourism activity 
+
+:::
+
+
+
+## Final Remarks
+
+::: {style="font-size: 0.7em"}
+
+* IIOAS framework as an estimate for regional figures
+  + Reproduces regional disparities and each city's main industries adequately
+* Determining Tourism Characteristic Activities
+  + Room to improve the sensitivity analysis
+* Tourism seems disconnected from other industries
+* While some cities are consolidated touristic destinations, others have potential to develop their tourism industry
+* Investment in accessibility (road paving, regional airports) have potential to increase tourism traffic
+
+:::
+
+
+
+## Thanks!
+
+::::{.columns}
+
+::: {.column width="50%"}
+#### Arthur Bazolli Alvarenga
+
+<a href="mailto:arthur.bazolli@estudante.ufjf.br" style="font-size: 30px">
+`r icons::fontawesome("paper-plane")` arthur.bazolli@estudante.ufjf.br
+</a>
+
+<a href="https://baarthur.github.io/" style="font-size: 30px">
+`r icons::fontawesome("link")` baarthur.github.io
+</a>
+
+<a href="http://twitter.com/baarthur0" style="font-size: 30px">
+`r icons::fontawesome("twitter")` \@baarthur0
+</a>
+
+<a href="http://github.com/baarthur" style="font-size: 30px">
+`r icons::fontawesome("github")` \@baarthur
+</a>
+
+<br>
+
+#### Cláudio Eurico Seibert
+
+<a href="mailto:claudioseibertf@gmail.com" style="font-size: 30px">
+`r icons::fontawesome("paper-plane")` claudioseibertf@gmail.com
+</a>
+:::
+
+::: {.column width="50%"}
+#### Elvira Helena Oliveira de Medeiros
+
+<a href="mailto:helena.elvira@estudante.ufjf.br" style="font-size: 30px">
+`r icons::fontawesome("paper-plane")` helena.elvira@estudante.ufjf.br
+</a>
+
+<br>
+
+#### Filipe Santiago dos Reis
+
+<a href="mailto:filipe.santiago@estudante.ufjf.br" style="font-size: 30px">
+`r icons::fontawesome("paper-plane")` filipe.santiago@estudante.ufjf.br
+</a>
+
+<br>
+
+#### Fernando Salgueiro Perobelli
+
+<a href="mailto:fernando.perobelli@ufjf.br" style="font-size: 30px">
+`r icons::fontawesome("paper-plane")` fernando.perobelli@ufjf.br
+</a>
+:::
+::::
+
+
+
+## References

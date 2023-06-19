@@ -1,0 +1,247 @@
+[
+	{
+		"id": "ferreiraneto2018",
+		"type": "article-journal",
+		"container-title": "Review of Regional Studies",
+		"DOI": "10.52324/001c.8000",
+		"ISSN": "1553-0892, 0048-749X",
+		"issue": "2",
+		"language": "en",
+		"source": "DOI.org (Crossref)",
+		"title": "Looking Behind the Scenes: An Assessment of the Interdependence of Brazilian Cultural Industries",
+		"title-short": "Looking Behind the Scenes",
+		"URL": "https://rrs.scholasticahq.com/article/8000-looking-behind-the-scenes-an-assessment-of-the-interdependence-of-brazilian-cultural-industries",
+		"volume": "48",
+		"author": [
+			{
+				"family": "Ferreira Neto",
+				"given": "Amir B."
+			},
+			{
+				"family": "Perobelli",
+				"given": "Fernando S."
+			},
+			{
+				"family": "Rabelo",
+				"given": "Alexandre"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					9,
+					26
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2018",
+					6,
+					20
+				]
+			]
+		}
+	},
+	{
+		"id": "fjp2017",
+		"type": "report",
+		"collection-title": "Estatística & Informações",
+		"event-place": "Belo Horizonte",
+		"language": "pt",
+		"number": "1",
+		"page": "50",
+		"publisher": "Fundação João Pinheiro",
+		"publisher-place": "Belo Horizonte",
+		"source": "Zotero",
+		"title": "Economia do Turismo de Minas Gerais 2010-2014",
+		"author": [
+			{
+				"family": "FJP",
+				"given": ""
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2017"
+				]
+			]
+		}
+	},
+	{
+		"id": "penna2022",
+		"type": "article-journal",
+		"abstract": "Tourism is one of the most important sources of employment and income in some less developed Brazilian regions and, as it is not a traditional sector, accurate assessment of its impacts is scarce. Thus, the elaboration of indicators that help designing public policies aimed at this set of activities is essential for the development strategies of these regions. In this sense, this paper makes a first contribution by developing a methodology capable of introducing a specific sector for tourism in input-output matrices (IOM). Using an MIP and tourism satellite accounts for the economy of Ceará, a new MIP is built using the proposed methodology. An additional contribution of this paper is the pull index, capable of synthesizing the indices of forward and backward links, as well as their dispersions in a single result. The results obtained indicate that tourism has the fifth highest traction index, being the seventh sector in terms of employment and income multipliers.",
+		"language": "en",
+		"page": "17",
+		"source": "Zotero",
+		"title": "Including Tourism in the Input-Output Matrix of Ceará Using the Tourism Satellite Account",
+		"author": [
+			{
+				"family": "Penna",
+				"given": "Christiano Modesto"
+			},
+			{
+				"family": "Saraiva",
+				"given": "Francisco Assuero Monteiro"
+			},
+			{
+				"family": "Baca",
+				"given": "Maurício Cabrera"
+			},
+			{
+				"family": "Araújo",
+				"given": "Luana Lima Bandeira"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022"
+				]
+			]
+		}
+	},
+	{
+		"id": "decamargo",
+		"type": "article-journal",
+		"language": "pt",
+		"page": "17",
+		"source": "Zotero",
+		"title": "O TURISMO E A ECONOMIA BRASILEIRA: UMA DISCUSSÃO DA MATRIZ DE INSUMO-PRODUTO",
+		"author": [
+			{
+				"family": "Camargo",
+				"given": "Fernanda Sartori",
+				"non-dropping-particle": "de"
+			},
+			{
+				"family": "Takasago",
+				"given": "Milene"
+			},
+			{
+				"family": "Guilhoto",
+				"given": "Joaquim J M"
+			},
+			{
+				"family": "Farias",
+				"given": "Aquiles Rocha",
+				"non-dropping-particle": "de"
+			},
+			{
+				"family": "Imori",
+				"given": "Denise"
+			}
+		]
+	},
+	{
+		"id": "goncalves",
+		"type": "article-journal",
+		"abstract": "Economy and tourism; Tourism production; Economic indicators of tourism.",
+		"language": "pt",
+		"page": "20",
+		"source": "Zotero",
+		"title": "Methodology for measurement of tourism characteristics activities: an application for Brazil and its Federative Units",
+		"author": [
+			{
+				"family": "Gonçalves",
+				"given": "Caio César Soares"
+			}
+		]
+	},
+	{
+		"id": "decarvalho",
+		"type": "article-journal",
+		"abstract": "The cultural and linguistic proximity between Brazilians and Portuguese is evident. Everything is consequence of years of bilateral relations, also of economic order. Amongst these, the tourist active comes detaching, a time that it feeds of all these approaching factors. Especially in some states that detach as receiving of Tourist with Fixed Residence in Portugal (TRFPs), as it is the case of Pernambuco. This work support itself in this reality to look for esteem the economic impacts of this tourist on the state. For in such a way, its expenses had been calculated and distributed amongst the state tourist subsectors, taking in account the geographic distribution, the daily average expenses and the time of permanence. After that, using a inputoutput boarding, the impacts on the production level, the income of the families, the level of job and on the sum of the added value, had been esteem for the state. The results had disclosed an influence superior, for example, to the GDP of important cities of Pernambuco.",
+		"issue": "1",
+		"language": "pt",
+		"page": "25",
+		"source": "Zotero",
+		"title": "PERNAMBUCO: Uma Análise DESCRITIVA E de Insumo-Produto",
+		"volume": "8",
+		"author": [
+			{
+				"family": "Carvalho",
+				"given": "Robson Góes",
+				"non-dropping-particle": "de"
+			}
+		]
+	},
+	{
+		"id": "eduardo",
+		"type": "article-journal",
+		"abstract": "This work aims to build the Input-Output Matrix for the touristic activity in the municipality of Campo Grande MS. Tourism is a social phenomenon that consists of the voluntary and temporary displacement of individuals or groups of people. The municipality stood out for ecotourism, one of the branches of this activity, which uses the natural and cultural heritage in a sustainable way, for the purpose of its conservation. The input-output matrix allows the identification of the impacts of each activity in relation to the entire economy. It was observed that the representativeness of the touristic activity for the municipality's economy is small, although through IOM, it can be inferred that with investments it could generate positive results for the municipality. Relevant is the Municipal Tourism Plan for the period from 2017 to 2027, however, without forecasting monetary values for investment in the activity for the development of local potential. Through IOM, it was observed that through a shock in specific sectors, it will result in impacts on job creation, remuneration and added value, both direct, indirect and induced.",
+		"language": "pt",
+		"page": "14",
+		"source": "Zotero",
+		"title": "DESENVOLVIMENTO DO TURISMO NO MUNICÍPIO DE CAMPO GRANDE / MS: UMA ANÁLISE A PARTIR DA METODOLOGIA MATRIZ DE INSUMO- PRODUTO",
+		"author": [
+			{
+				"family": "Eduardo",
+				"given": "Antonio Sérgio"
+			}
+		]
+	},
+	{
+		"id": "http://zotero.org/users/6857049/items/2K6MQNTV",
+		"type": "document",
+		"title": "TESE Poema Isis Andrade de Souza.pdf",
+		"URL": "https://repositorio.ufpe.br/bitstream/123456789/12589/1/TESE%20Poema%20Isis%20Andrade%20de%20Souza.pdf",
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					10,
+					9
+				]
+			]
+		}
+	},
+	{
+		"id": "souza2016",
+		"type": "report",
+		"abstract": "No abstract is available for this item.",
+		"collection-title": "Anais do XLIII Encontro Nacional de Economia [Proceedings of the 43rd Brazilian Economics Meeting]",
+		"language": "en",
+		"note": "container-title: Anais do XLIII Encontro Nacional de Economia [Proceedings of the 43rd Brazilian Economics Meeting]",
+		"number": "173",
+		"publisher": "ANPEC - AssociaÃ§Ã£o Nacional dos Centros de PÃ³s-GraduaÃ§Ã£o em Economia [Brazilian Association of Graduate Programs in Economics]",
+		"source": "ideas.repec.org",
+		"title": "O Setor De Turismo Na Região Nordeste: Medidas E Impactos A Partir Da Matriz Insumo- Produto Inter-Regional",
+		"title-short": "O Setor De Turismo Na Região Nordeste",
+		"URL": "https://ideas.repec.org/p/anp/en2015/173.html",
+		"author": [
+			{
+				"family": "Souza",
+				"given": "Poema Isis Andrade De"
+			},
+			{
+				"family": "Guilhoto",
+				"given": "Joaquim José Martins"
+			},
+			{
+				"family": "Neto",
+				"given": "Raul Da Mota Silveira"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					10,
+					9
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2016"
+				]
+			]
+		}
+	}
+]

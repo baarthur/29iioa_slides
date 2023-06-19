@@ -1,0 +1,6 @@
+project:
+  title: "iioa_mg"
+
+#bibliography
+bibliography: src/yaml/references.bib
+csl: src/yaml/chicago.csl
