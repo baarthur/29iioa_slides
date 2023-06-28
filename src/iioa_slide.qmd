@@ -22,7 +22,7 @@ editor:
 logo: ../data/img/ufjf_lates.png
 ---
 
-## Motivation
+## Aknowledgements
 
 ```{r}
 #| label: setup
@@ -31,11 +31,18 @@ library(here)
 library(kableExtra)
 ```
 
+![](../data/img/iioa_ufjf_fapemig.png)
+
+
+
+
+## Motivation
+
 * What role does tourism plays in a developing economy?
 * Minas Gerais, Brazil:
   + Highly dependent on the mining industry
   + Rich cultural and architectonic heritage
-* How related it is to the rest of the economy?
+* How related is it to the rest of the economy?
 * What about regional disparities?
 
 ::: {style="text-align: center; color: #d33682"}
@@ -48,16 +55,16 @@ We have a lot of questions, but not so many answers.
 
 :::: {.columns style="font-size: 0.7em"}
 
-::: {.column width="35%"}
-* Population: 21.4 million
+::: {.column width="30%"}
+* Population: 20.5 million (2022)
   + #2 in Brazil
-* HDI: 0.774 (2010)
+* HDI: 0.774 (2021)
   + #4 in Brazil
-* GDP: US$ 177 billion
+* GDP: US$ 177 billion (2022)
   + 9.3% of national output
 :::
 
-::: {.column width="65%"}
+::: {.column width="70%"}
 ![](../data/img/mapa_gdp.png)
 :::
 
@@ -87,20 +94,20 @@ Minas Gerais is a snapshot of Brazil: It reproduces national patterns of income 
 ::: {style="font-size: 0.5em"}
 |Code|Region          |Population|% MG  |GVA (R\$M)|% MG  |HDI-M|
 |:--:|:----           |:----:    |:----:|:----:    |:----:|:---:|    
-|R01 |Belo Horizonte  |2,530,701 |11.82%|71,892    |12.69%|0.810|
-|R02 |Barão de Cocais |33,232    |0.16% |723       |0.13% |0.722|
-|R03 |Caeté           |45,364    |0.21% |575       |0.10% |0.728|
-|R04 |Catas Altas     |5,465     |0.03% |501       |0.09% |0.684|
-|R05 |Congonhas       |55,863    |0.26% |2,281     |0.40% |0.753|
-|R06 |Diamantina      |47,924    |0.22% |686       |0.12% |0.716|
-|R07 |Mariana         |61,830    |0.29% |3,832     |0.68% |0.742|
-|R08 |Ouro Preto      |74,824    |0.35% |5,978     |1.05% |0.741|
-|R09 |Sabará          |137,877   |0.64% |2,947     |0.52% |0.731|
-|R10 |Santa Bárbara   |31,873    |0.15% |1,159     |0.20% |0.707|
-|R11 |São João del Rei|90,897    |0.42% |1,951     |0.34% |0.758|
-|R12 |Serro           |20,915    |0.10% |192       |0.03% |0.656|
-|R13 |Tiradentes      |8,160     |0.04% |118       |0.02% |0.740|
-|R14 |Rest of MG      |18,267,025|85.31%|473,863   |83.62%|0.667|
+|R01 |Belo Horizonte  |2,315,560 |11.27%|71,892    |12.69%|0.810|
+|R02 |Barão de Cocais |30,778    |0.15% |723       |0.13% |0.722|
+|R03 |Caeté           |38,776    |0.19% |575       |0.10% |0.728|
+|R04 |Catas Altas     |5,476     |0.03% |501       |0.09% |0.684|
+|R05 |Congonhas       |52,890    |0.26% |2,281     |0.40% |0.753|
+|R06 |Diamantina      |47,702    |0.23% |686       |0.12% |0.716|
+|R07 |Mariana         |61,387    |0.30% |3,832     |0.68% |0.742|
+|R08 |Ouro Preto      |74,824    |0.36% |5,978     |1.05% |0.741|
+|R09 |Sabará          |129,372   |0.63% |2,947     |0.52% |0.731|
+|R10 |Santa Bárbara   |30,466    |0.15% |1,159     |0.20% |0.707|
+|R11 |São João del Rei|90,225    |0.44% |1,951     |0.34% |0.758|
+|R12 |Serro           |21,952    |0.11% |192       |0.03% |0.656|
+|R13 |Tiradentes      |7,744     |0.04% |118       |0.02% |0.740|
+|R14 |Rest of MG      |17,679,167|85.31%|473,863   |83.62%|0.667|
 :::
 
 

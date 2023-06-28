@@ -9,15 +9,31 @@ format: html
 ```{r}
 #| label: setup
 
+library(cowplot)
 library(geobr)
+library(ggthemes)
 library(here)
 library(readxl)
 library(sf)
+library(sidrar)
 library(tidyverse)
 ```
 
 
-# Shapefiles
+## Aesthetics
+
+```{r}
+solarized <- c(
+  base03 = "#002b36", base02 = "#073642",base01 = "#586e75", base00 = "#657b83", 
+  base0 =  "#839496", base1 =  "#93a1a1", base2 =  "#eee8d5", base3 =  "#fdf6e3", 
+  yellow = "#b58900", orange = "#cb4b16",red =    "#dc322f", magenta = "#d33682", 
+  violet = "#6c71c4", blue =   "#268bd2", cyan =   "#2aa198", green =  "#859900"
+  )
+```
+
+
+
+## Shapefiles
 
 ```{r}
 cidades_barroco <- c(
@@ -25,13 +41,6 @@ cidades_barroco <- c(
   "Ouro Preto", "Sabará", "Santa Bárbara", "São João Del Rei", "Serro", "Tiradentes", 
   "Resto MG", "Resto BR"
 )
-
-solarized <- c(
-  base03 = "#002b36", base02 = "#073642",base01 = "#586e75", base00 = "#657b83", 
-  base0 =  "#839496", base1 =  "#93a1a1", base2 =  "#eee8d5", base3 =  "#fdf6e3", 
-  yellow = "#b58900", orange = "#cb4b16",red =    "#dc322f", magenta = "#d33682", 
-  violet = "#6c71c4", blue =   "#268bd2", cyan =   "#2aa198", green =  "#859900"
-  )
 
 shp_br <- read_state(code_state = "all", showProgress = F, simplified = T)
 
@@ -51,6 +60,73 @@ shp_er <- shp_er %>%
 ```
 
 
+## Socioeconomic data
+
+```{r}
+df_pib_muni <- read_excel(here("data/fjp_pib_muni.xlsx")) %>% 
+  janitor::clean_names() %>% 
+  filter(ano == "2018", sigla_da_unidade_da_federacao == "MG")
+
+df_pib_muni <- df_pib_muni %>% 
+  transmute(
+    year = ano, code_muni = as.character(codigo_do_municipio), name_muni = nome_do_municipio, name_metro_area = regiao_metropolitana,
+    code_intermediate = codigo_da_regiao_geografica_intermediaria, name_intermediate = nome_da_regiao_geografica_intermediaria,
+    va_agr = valor_adicionado_bruto_da_agropecuaria_a_precos_correntes_r_1_000,
+    va_man = valor_adicionado_bruto_da_industria_a_precos_correntes_r_1_000,
+    va_svc = valor_adicionado_bruto_dos_servicos_a_precos_correntes_exceto_administracao_defesa_educacao_e_saude_publicas_e_seguridade_social_r_1_000,
+    va_pub = valor_adicionado_bruto_da_administracao_defesa_educacao_e_saude_publicas_e_seguridade_social_a_precos_correntes_r_1_000,
+    va_tot = valor_adicionado_bruto_total_a_precos_correntes_r_1_000,
+    taxes = impostos_liquidos_de_subsidios_sobre_produtos_a_precos_correntes_r_1_000,
+    gdp = produto_interno_bruto_a_precos_correntes_r_1_000,
+    gdp_pc = produto_interno_bruto_per_capita_a_precos_correntes_r_1_00
+  )
+
+df_pop_muni <- get_sidra(
+  6579,
+  period = "2018",
+  geo = "City",
+  geo.filter = list("State" = 31)
+) %>% 
+  janitor::clean_names() %>% 
+  transmute(year = as.numeric(ano), pop = valor, code_muni = municipio_codigo)
+
+df_muni <- df_pib_muni %>% 
+  left_join(df_pop_muni)
+
+remove(df_pib_muni, df_pop_muni)
+
+saveRDS(df_muni, here("data/df_muni.RDS"))
+
+df_ri <- df_muni %>% 
+  left_join(shp_mg_ri) %>% 
+  group_by(name_intermediate, code_intermediate, geom) %>% 
+  summarise(
+    across(
+      va_agr:pop,
+      sum
+    )
+  ) %>% 
+  st_as_sf()
+  
+df_ri <- df_ri %>% 
+  mutate(gdp_pc = gdp*1000/pop)
+
+# df_pib_ri %>% 
+#   mutate(
+#     va_tot_qt = factor(
+#       cut(
+#         va_tot,
+#         breaks = quantile(df_pib_ri$va_tot, seq(0,1, 0.20)),
+#         #include.lowest = T,
+#         labels = c("20% (<19)", "40% (<28)", "60% (<33)", "80% (<41)", "100% (198)") 
+#       )
+#     )
+#   )
+``` 
+
+
+
+
 # Maps
 
 ## Brazil
@@ -58,16 +134,15 @@ shp_er <- shp_er %>%
 ```{r}
 #| label: mapa_br
 
-shp_br %>% 
+mapa_br <- shp_br %>% 
   ggplot() +
   geom_sf(fill = "lightgrey") +
   geom_sf(
     data = shp_br %>% filter(abbrev_state == "MG"),
     fill = solarized[["base01"]]
   ) +
-  theme_void() +
-  theme(aspect.ratio = 1)
-ggsave(here("data/img/mapa_br.png"), device = "png", width = 7, height = 7, bg = "transparent")
+  theme_void()
+ggsave(here("data/img/mapa_br.png"), mapa_br, device = "png", width = 7, height = 7, bg = "transparent")
 ```
 
 ```{r}
@@ -132,8 +207,7 @@ ggsave(here("data/img/mapa_mg.png"), mapa_mg, device = "png", height = 7, bg = "
 ```{r}
 mapa_pal <- c("Estrada Real" = "#b58900", "State Capital" = "#586e75", "Baroque City" = "#2aa198")
 
-#mapa_mg <- 
-ggplot() +
+mapa_mg <- ggplot() +
   geom_sf(data = shp_mg_ri, color = solarized[["base3"]]) +
   geom_sf(data = shp_br %>% filter(abbrev_state != "MG"), color = solarized[["base0"]]) +
   geom_sf(
@@ -163,8 +237,90 @@ ggplot() +
   theme_void() +
   theme(
     panel.background = element_rect(fill = "#9bbdf9", color = NA)
-  ) 
+  )
+
+mapa_mg_2 <- ggdraw(mapa_mg) +
+  draw_plot(mapa_br, x = 0, y = 0.575, width = 0.45, height = 0.394)
+ggsave(here("data/img/mapa_mg.png"), mapa_mg_2, width = 7, height = 3.5, device = "png", bg = "transparent")
 ```
+
+
+
+## Value Added by Region
+
+```{r}
+mapa_va <- df_ri %>% 
+  ggplot() +
+  geom_sf(
+    aes(fill = va_tot),
+    color = solarized[["base0"]]
+  ) +
+  geom_sf(data = shp_br %>% filter(abbrev_state != "MG"), color = solarized[["base0"]]) +
+  scale_fill_fermenter(
+    palette = "Pastel1",
+    #colors = c("#dc322f", "#d33682", "#6c71c4", "#268bd2", "#2aa198"),
+    breaks = quantile(df_ri$va_tot, seq(0,1, 0.20)),
+    labels = c("0%", "20% (19)", "40% (28)", "60% (33)", "80% (41)", "100% (198)"),
+    name = "Quintiles \n(R$ Billion)"
+  ) +
+  labs(
+    title = "Total Value Added by Region, 2018"
+  ) +
+  xlim(-52,-40) +
+  ylim(-23,-14) +
+  theme_void() +
+  theme(
+    panel.background = element_rect(fill = "#9bbdf9", color = NA),
+    text = element_text(color = solarized[["base01"]], face = "bold", family = "Lato")
+  )
+
+ggdraw(mapa_va) +
+  draw_plot(mapa_br, x = 0, y = 0.55, width = 0.4, height = 0.4)
+
+ggsave(here("data/img/mapa_va.png"), device = "png", bg = "transparent")
+```
+
+
+## GDP per capita by region
+
+```{r}
+mapa_gdp <- df_ri %>% 
+  ggplot() +
+  geom_sf(
+    aes(fill = gdp_pc),
+    color = solarized[["base0"]],
+    alpha = 0.75
+  ) +
+  geom_sf(data = shp_br %>% filter(abbrev_state != "MG"), color = solarized[["base0"]]) +
+  # scale_fill_gradientn(
+  #   colors = c("#dc322f", "#2aa198", "#268bd2"),
+  #   name = "GDP per capita (R$)",
+  #   labels = scales::comma
+  # ) +
+  scale_fill_distiller(
+    palette = "Spectral",
+    direction = 1,
+    name = "GDP per capita (R$)",
+    labels = scales::comma
+  ) +
+  labs(
+    title = "GDP per capita by Region, 2018 \n"
+  ) +
+  xlim(-52,-40) +
+  ylim(-23,-14) +
+  theme_void() +
+  theme(
+    panel.background = element_rect(fill = "#9bbdf9", color = NA),
+    text = element_text(color = solarized[["base01"]], face = "bold", family = "Lato")
+  )
+
+mapa_gdp_2 <- ggdraw(mapa_gdp) +
+  draw_plot(mapa_br, x = 0.01, y = 0.5, width = 0.4, height = 0.35)
+ggsave(here("data/img/mapa_gdp.png"), mapa_gdp_2, width = 7, height = 3.5, device = "png", bg = "transparent")
+```
+
+
+
 
 
 
@@ -233,15 +389,21 @@ p_va_mg <- df_pib %>%
   geom_col(
     aes(x = Setor, y = Share, fill = Share)
   ) +
-  scale_fill_viridis_c(option = "D", direction = 1) +
+  scale_fill_viridis_c(option = "D", direction = 1, begin = 0.6, end = 1) +
   scale_y_continuous(labels = scales::percent) +
-  theme_bw() +
   labs(
+    title = "Minas Gerais: Value Added by Sector",
     fill = "% VA"
   ) +
   xlab("Sector") +
-  ylab("Share")
+  ylab("Share") +
+  theme_solarized() +
+  theme(
+    text = element_text(color = solarized[["base01"]], face = "bold", family = "Lato"),
+    #plot.background = element_rect(fill = solarized[["base3"]], color = NA),
+    #legend.background = element_rect(fill = solarized[["base3"]], color = NA)
+  )
 
-ggsave(here("data/img/va_mg.png"), p_va_mg, device = "png", width = 5, height = 3, units = "in")
+ggsave(here("data/img/va_mg.png"), p_va_mg, device = "png", width = 7, height = 3.5, units = "in", bg = "transparent")
 ```
 

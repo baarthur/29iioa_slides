@@ -369,7 +369,7 @@ p_va_mg <- df_pib %>%
   geom_col(
     aes(x = Setor, y = Share, fill = Share)
   ) +
-  scale_fill_viridis_c(option = "D", direction = 1) +
+  scale_fill_viridis_c(option = "D", direction = 1, begin = 0.6, end = 1) +
   scale_y_continuous(labels = scales::percent) +
   labs(
     title = "Minas Gerais: Value Added by Sector",
