@@ -41,7 +41,7 @@ shp_br <- read_state(code_state = "all", showProgress = F, simplified = T)
 shp_mg <- read_state("MG", showProgress = F)
 shp_mg_ri <- read_intermediate_region(code_intermediate = "MG", showProgress = F)
 
-shp_barroco <- read_municipality(code_muni = "MG", showProgress = F)
+shp_barroco <- read_municipality(code_muni = "MG", showProgress = T, simplified = T)
 shp_barroco <- shp_barroco %>% 
   filter(name_muni %in% cidades_barroco)
 
@@ -51,6 +51,14 @@ shp_er <- st_read(here("data/shp/shp_estrada.kml")) %>%
 shp_er <- shp_er %>% 
   filter(Name == "ER") %>% 
   st_union
+
+# saveRDS(shp_br, here("data/shp_br.RDS"))
+# saveRDS(shp_mg, here("data/shp_mg.RDS"))
+# saveRDS(shp_mg_ri, here("data/shp_mg_ri.RDS"))
+# 
+# shp_br <- readRDS(here("data/shp_br.RDS"))
+# shp_mg <- readRDS(here("data/shp_mg.RDS"))
+# shp_mg_ri <- readRDS(here("data/shp_mg_ri.RDS"))
 ```
 
 ## Socioeconomic data
@@ -224,11 +232,12 @@ mapa_mg <- ggplot() +
   ylim(-23,-14) +
   theme_void() +
   theme(
-    panel.background = element_rect(fill = "#9bbdf9", color = NA)
+    panel.background = element_rect(fill = "#9bbdf9", color = NA),
+    legend.position = "bottom"
   )
 
 mapa_mg_2 <- ggdraw(mapa_mg) +
-  draw_plot(mapa_br, x = 0, y = 0.575, width = 0.45, height = 0.394)
+  draw_plot(mapa_br, x = 0.10, y = 0.575, width = 0.45, height = 0.394)
 ggsave(here("data/img/mapa_mg.png"), mapa_mg_2, width = 7, height = 3.5, device = "png", bg = "transparent")
 ```
 

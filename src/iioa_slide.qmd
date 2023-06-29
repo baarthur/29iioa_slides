@@ -35,7 +35,6 @@ library(kableExtra)
 
 
 
-
 ## Motivation
 
 * What role does tourism plays in a developing economy?
@@ -116,19 +115,18 @@ Minas Gerais is a snapshot of Brazil: It reproduces national patterns of income 
 
 :::: {.columns style="font-size: 0.7em"}
 
-::: {.column width="35%"}
-* Gold run, 17th and 18th centuries 
+::: {.column width="25%"}
+* Gold run, 17th and 18th centuries
 * Portuguese-inspired with local features
 * Sacred art, buildings, landmarks
-* Three Unesco World Cultural Heritage sites
-  + Diamantina
-  + Ouro Preto
-  + Congonhas Sanctuary
+
 :::
 
-::: {.column width="65%"}
+::: {.column width="75%"}
 ![](../data/img/mapa_mg.png)
 :::
+
+Three Unesco World Cultural Heritage sites: Diamantina, Ouro Preto, and the Congonhas Sanctuary
 
 ::::
 
@@ -151,7 +149,7 @@ Minas Gerais is a snapshot of Brazil: It reproduces national patterns of income 
 :::
 
 ::: {.fragment}
-![](../data/img/cg_3.jpg){height="600"}
+![](../data/img/op_opera.jpeg){height="600"}
 :::
 
 ::: {.fragment}
@@ -168,6 +166,15 @@ Minas Gerais is a snapshot of Brazil: It reproduces national patterns of income 
 
 ::: {.fragment}
 ![](../data/img/td_2.jpg){height="600"}
+:::
+
+::: {.fragment}
+![](../data/img/td_skyline.avif){height="600"}
+:::
+
+
+::: {.fragment}
+![](../data/img/op_skyline.avif){height="600"}
 :::
 
 :::
@@ -236,7 +243,7 @@ $$
 
 * Our approach:
   + Estimate tourism shares in each sector and region
-  + Tourism Characteristic Activities (TCA)s, classified by the state government
+  + Tourism Characteristic Activities (TCA)s, as defined by the state government
   + Sensitivity analysis + state survey
   + Apply shares as extraction coefficient
 
